@@ -15,7 +15,7 @@ const contact={
         contact.allContacts.push(newContact);
         console.log(newContact);
         displayContacts(contact.allContacts);
-    },
+        },
 
     deleteContact:(id)=>{
         indexNo = contact.allContacts.findIndex((elm)=>elm.id === id);
@@ -46,36 +46,38 @@ const contact={
         result= document.getElementById("result");
         result.innerHTML='',
         array1.forEach(element=>{
-            newCard = document.createElement('div');
-            newCard.className='col-3';
+            newCard = document.createElement('tr');
+           // newCard.className='col-3';
 
 
 
-            newCard.innerHTML=`<div class="card" style="width:14rem">
-            <div class="card-body">
-            <h2 class="card=text">${element.name}</h2>
-            <p class="card=text">${element.email}</p>
-            <p class="card=text">${element.phone}</p>
-            <p class="card=text">${element.address}</p>
-            <button class="btn btn-primary" onclick= "contact.updateContact('${element.id}')">Edit</button>
-            <button class="btn btn-primary" onclick= "contact.deleteContact('${element.id}')">Delete</button>
-            </div>`;
-            //console.log(element.name);
+            newCard.innerHTML=`<tr>
+               <td>${element.name}</td>
+               <td>${element.email}</td>
+               <td>${element.phone}</td>
+               <td>${element.address}</td>
+               <td><button class="btn btn-primary" onclick="contact.updateContact('${element.id}')">Edit</button>
+              <button class="btn btn-primary" onclick="contact.deleteContact('${element.id}')">Delete</button>
+             </td> </tr>`
+            console.log(element.name);
             result.appendChild(newCard);
-        
+
+            
         })        
     }
 
     contact.addContacts('nisha','nisha04@gmail.com','1234566676','pune');
     contact.addContacts('rima','rima034@gmail.com','12335768','Beed');
 
-    document.getElementById('sbmitBTN').addEventListener('click',()=>{
+    document.getElementById('sbmitBTN').addEventListener('click',(e)=>{
+        console.log(111);
+        e.preventDefault();
         nameInput = document.getElementById('nameInput');
         emailInput  = document.getElementById('emailInput');
         phoneInput = document.getElementById('phoneInput');
         addressInput = document.getElementById('addressInput');
 
-    
+        
         name = nameInput.value;
         email = emailInput.value;
         phone = phoneInput.value;
@@ -90,4 +92,4 @@ const contact={
 
     })
 
-    
+   
